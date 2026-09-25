@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JAGADISH B // CYBERPUNK PORTFOLIO</title>
+<style>
+:root{
+  --bg:#05060a;--panel:#0b0f18;--panel2:#101622;--cyan:#00f6ff;
+  --pink:#ff2bd6;--green:#79ff6b;--text:#e9f7ff;--muted:#8ca3b5;
+  --line:rgba(0,246,255,.22);--danger:#ff4d6d;--yellow:#ffe66d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+ radial-gradient(circle at 15% 15%,rgba(255,43,214,.12),transparent 30%),
+ radial-gradient(circle at 85% 25%,rgba(0,246,255,.10),transparent 32%),
+ linear-gradient(135deg,#030409,#080b12 55%,#030409);
+ color:var(--text);font-family:Consolas,"Courier New",monospace;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;
+ background:repeating-linear-gradient(0deg,transparent 0 3px,#fff 4px);mix-blend-mode:overlay}
+a{color:var(--cyan);text-decoration:none} a:hover{color:#fff}
+.container{width:min(1180px,92%);margin:auto}
+nav{position:sticky;top:0;z-index:50;background:rgba(3,5,10,.88);backdrop-filter:blur(12px);
+ border-bottom:1px solid var(--line)}
+.navin{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+.logo{color:var(--cyan);font-weight:900;letter-spacing:3px}.logo span{color:var(--pink)}
+.navlinks{display:flex;gap:20px;flex-wrap:wrap}.navlinks a{font-size:12px}
+.hero{min-height:88vh;display:grid;place-items:center;padding:70px 0;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:35px;align-items:center}
+.kicker{color:var(--green);letter-spacing:3px;font-size:13px}
+h1{font-size:clamp(42px,8vw,92px);line-height:.9;margin:18px 0;text-transform:uppercase;
+ text-shadow:4px 0 var(--pink),-4px 0 var(--cyan)}
+.glitch{position:relative}
+.subtitle{font-size:18px;color:var(--muted);max-width:700px;line-height:1.7}
+.contact{display:flex;gap:10px;flex-wrap:wrap;margin:25px 0}
+.chip{border:1px solid var(--line);background:rgba(0,246,255,.04);padding:9px 12px;font-size:12px}
+.hud{border:1px solid var(--cyan);padding:24px;background:linear-gradient(145deg,rgba(0,246,255,.06),rgba(255,43,214,.04));
+ box-shadow:0 0 35px rgba(0,246,255,.08);position:relative}
+.hud:before,.hud:after{content:"";position:absolute;width:30px;height:30px;border-color:var(--pink);border-style:solid}
+.hud:before{left:-1px;top:-1px;border-width:2px 0 0 2px}.hud:after{right:-1px;bottom:-1px;border-width:0 2px 2px 0}
+.hud-title{color:var(--pink);font-size:12px}.stat{display:flex;justify-content:space-between;border-bottom:1px dashed #234;padding:12px 0}
+section{padding:85px 0}.section-title{display:flex;align-items:center;gap:15px;margin-bottom:35px}
+.section-title h2{margin:0;font-size:28px;color:var(--cyan)}.section-title:before{content:"//";color:var(--pink)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:rgba(11,15,24,.82);border:1px solid var(--line);padding:24px;position:relative}
+.card:hover{border-color:var(--pink);box-shadow:0 0 25px rgba(255,43,214,.08)}
+.card h3{margin-top:0;color:var(--green)}.meta{color:var(--pink);font-size:12px}
+ul{line-height:1.9;color:#c5d6df}.muted{color:var(--muted);line-height:1.8}
+.skills{display:flex;flex-wrap:wrap;gap:10px}.skill{padding:10px 13px;border:1px solid #24505b;background:#071219;color:var(--cyan);font-size:12px}
+.timeline{border-left:2px solid var(--cyan);padding-left:24px}
+.timeline .card{margin-bottom:18px}
+footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);text-align:center}
+#editBtn{position:fixed;right:22px;bottom:22px;z-index:100;background:var(--pink);color:#05060a;border:0;padding:14px 18px;
+ font:900 12px monospace;cursor:pointer;box-shadow:0 0 25px rgba(255,43,214,.35)}
+.modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.78);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+.modal.show{display:flex}.modalbox{width:min(560px,92%);background:#070b12;border:1px solid var(--cyan);padding:25px;box-shadow:0 0 50px rgba(0,246,255,.2)}
+.modal h3{color:var(--cyan);margin-top:0}.input{width:100%;padding:13px;background:#02050a;border:1px solid #31515e;color:#fff;font:14px monospace;margin:8px 0 15px}
+.btn{padding:11px 16px;border:1px solid var(--cyan);background:transparent;color:var(--cyan);font:700 12px monospace;cursor:pointer}
+.btn:hover{background:var(--cyan);color:#000}.btn.danger{border-color:var(--danger);color:var(--danger)}
+.editor{display:none;position:fixed;inset:0;z-index:150;background:#05070c;overflow:auto;padding:25px}
+.editor.show{display:block}.editor-inner{width:min(1100px,96%);margin:auto}
+.editor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.field{border:1px solid #24404c;background:#090e16;padding:15px}.field label{display:block;color:var(--pink);font-size:11px;margin-bottom:7px}
+textarea.input{min-height:100px;resize:vertical}
+.toolbar{position:sticky;top:0;background:#05070c;padding:15px 0;z-index:2;display:flex;gap:10px;flex-wrap:wrap;border-bottom:1px solid #17333d;margin-bottom:20px}
+.toast{position:fixed;left:50%;bottom:25px;transform:translateX(-50%);background:#0b171d;border:1px solid var(--green);color:var(--green);padding:12px 18px;display:none;z-index:300}
+@media(max-width:800px){.hero-grid,.grid,.editor-grid{grid-template-columns:1fr}.navlinks{display:none}section{padding:55px 0}h1{font-size:55px}}
+
+.editor-section{border:1px solid #21404b;padding:18px;margin:16px 0;background:#080d15}
+.editor-section h3{color:var(--cyan);margin-top:0}
+.editor-section h3 .btn{margin-left:10px}
+.edit-row{border:1px solid #1d3640;padding:15px;margin:12px 0;background:#0a1119}
+.edit-row-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.edit-row-head strong{color:var(--pink)}
+.two{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.small-label{display:block;color:var(--muted);font-size:10px;margin:8px 0 3px}
+.file-note{color:var(--muted);font-size:10px;margin-top:8px}
+.cert-card{cursor:pointer}
+.cert-card:hover{border-color:var(--green)}
+.status{display:inline-block;border:1px solid var(--green);color:var(--green);padding:5px 8px;font-size:10px;margin:8px 0}
+@media(max-width:800px){.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><div class="container navin">
+  <div class="logo">JAGADISH<span>.B</span></div>
+  <div class="navlinks">
+    <a href="#about">ABOUT</a><a href="#experience">EXPERIENCE</a><a href="#education">EDUCATION</a>
+    <a href="#skills">SKILLS</a><a href="#projects">PROJECTS</a><a href="#certifications">CERTS</a>
+  </div>
+</div></nav>
+
+<header class="hero">
+<div class="container hero-grid">
+  <div>
+    <div class="kicker">SYSTEM ONLINE // PORTFOLIO v1.0</div>
+    <h1 class="glitch" id="heroName">JAGADISH B</h1>
+    <div class="subtitle" id="heroSummary">Electronics and Communication Engineering graduate with strong analytical skills and a solid academic foundation. Quick learner with the ability to adapt to new technologies, follow processes, and work effectively in team-oriented environments. Seeking an entry-level opportunity to apply technical knowledge, problem-solving skills, and contribute to organizational success.</div>
+    <div class="contact">
+      <div class="chip" id="phone">+91-73589 43247</div>
+      <div class="chip" id="email">jaganjash095@gmail.com</div>
+    </div>
+  </div>
+  <div class="hud">
+    <div class="hud-title">[ USER_PROFILE.exe ]</div>
+    <div class="stat"><span>STATUS</span><b style="color:var(--green)" id="heroStatus">OPEN TO OPPORTUNITIES</b></div>
+    <div class="stat"><span>DOMAIN</span><b>ECE / DATA / TESTING</b></div>
+    <div class="stat"><span>EDUCATION</span><b id="heroEducation">BE - ECE</b></div>
+    <div class="stat"><span>CGPA</span><b>7.8</b></div>
+    <div class="stat"><span>LANGUAGES</span><b id="heroLanguages">TAMIL / ENGLISH</b></div>
+  </div>
+</div>
+</header>
+
+
+<main class="container">
+<section id="about"><div class="section-title"><h2>ABOUT / SUMMARY</h2></div>
+<div class="card"><p class="muted" id="summary2"></p></div></section>
+
+<section id="experience"><div class="section-title"><h2>PROFESSIONAL EXPERIENCE</h2></div>
+<div class="timeline" id="experienceView"></div></section>
+
+<section id="education"><div class="section-title"><h2>EDUCATION</h2></div>
+<div class="grid" id="educationView"></div></section>
+
+<section id="skills"><div class="section-title"><h2>TECHNICAL SKILLS</h2></div>
+<div class="grid" id="skillsView"></div></section>
+
+<section id="professional-skills"><div class="section-title"><h2>PROFESSIONAL SKILLS</h2></div>
+<div class="card"><div class="skills" id="professionalSkills"></div></div></section>
+
+<section id="projects"><div class="section-title"><h2>ACADEMIC PROJECTS</h2></div>
+<div class="grid" id="projectCards"></div></section>
+
+<section id="certifications"><div class="section-title"><h2>CERTIFICATIONS</h2></div>
+<p class="muted">Click a certification to open its uploaded certificate.</p>
+<div class="grid" id="certCards"></div></section>
+
+<section id="additional"><div class="section-title"><h2>ADDITIONAL INFORMATION</h2></div>
+<div class="grid">
+<div class="card"><h3>Languages</h3><p id="languages"></p></div>
+<div class="card"><h3>Hobbies</h3><p class="muted" id="hobbies"></p></div>
+</div></section>
+</main>
+
+
+<footer><div class="container">JAGADISH B // CYBERPUNK PORTFOLIO // <span style="color:var(--cyan)">SYSTEM READY</span></div></footer>
+
+<button id="editBtn">⚡ EDIT PORTFOLIO</button>
+
+<div class="modal" id="loginModal"><div class="modalbox">
+<h3>[ ADMIN ACCESS REQUIRED ]</h3><p class="muted">Enter the portfolio edit password to continue.</p>
+<input class="input" id="passwordInput" type="password" placeholder="PASSWORD">
+<div><button class="btn" onclick="unlock()">AUTHENTICATE</button> <button class="btn danger" onclick="closeLogin()">CANCEL</button></div>
+<p id="loginError" style="color:var(--danger);display:none">ACCESS DENIED.</p>
+</div></div>
+
+
+<div class="editor" id="editor">
+<div class="editor-inner">
+<div class="toolbar">
+<button class="btn" onclick="saveChanges()">SAVE CHANGES</button>
+<button class="btn" onclick="resetData()">RESET ORIGINAL</button>
+<button class="btn danger" onclick="closeEditor()">CLOSE</button>
+</div>
+<h2 style="color:var(--cyan)">[ PORTFOLIO CONTROL PANEL ]</h2>
+<p class="muted">Each section has <b>ADD MORE</b>. You can add, edit, remove, and upload certification files.</p>
+<div id="editorFields"></div>
+</div></div>
+<div class="toast" id="toast"></div>
+
+
+<script>
+const ORIGINAL={
+name:"JAGADISH B",phone:"+91-73589 43247",email:"jaganjash095@gmail.com",
+summary:"Electronics and Communication Engineering graduate with strong analytical skills and a solid academic foundation. Quick learner with the ability to adapt to new technologies, follow processes, and work effectively in team-oriented environments. Seeking an entry-level opportunity to apply technical knowledge, problem-solving skills, and contribute to organizational success.",
+experience:[{role:"Research Analyst",company:"Exchange Data International, Vellore",period:"April 2026 – Aug 2026",status:"Completed",bullets:[
+"Researched, validated, and maintained financial market data with high accuracy.",
+"Used Microsoft Excel and Microsoft 365 tools for data processing and reporting.",
+"Collaborated with team members using Microsoft Teams.",
+"Worked on the Columba System to manage, update, and validate financial datasets.",
+"Performed quality checks to ensure data accuracy and consistency.",
+"Followed company SOPs while meeting daily productivity and quality targets."
+]}],
+education:[{degree:"Bachelor of Engineering in Electronics and Communication Engineering",institution:"Global Institute of Engineering & Technology",period:"2019 - 2023",grade:"7.8 CGPA"}],
+skillGroups:[
+{name:"Programming",items:["Java"]},{name:"Database",items:["SQL","MySQL"]},
+{name:"Data & Productivity Tools",items:["Microsoft Excel (Data Validation, Formulas, Filtering, Sorting, Pivot Tables)","Microsoft 365","Microsoft Teams","Columba System (Internal Data Management Platform)","Microsoft Outlook"]},
+{name:"Testing",items:["Manual Testing","Selenium WebDriver","SDLC","STLC","Regression Testing","Functional Testing","Bug Life Cycle"]},
+{name:"Tools",items:["Eclipse","MySQL"]},{name:"Platforms",items:["Linux (Mint, Ubuntu, Kali)","Windows"]}],
+professionalSkills:["Data Validation & Quality Assurance","Financial Data Research","Data Analysis","Attention to Detail","Process Compliance","Team Collaboration","Problem Solving"],
+projects:["Personalized Emotion Recognition and Emotion Prediction System Based on Cloud Computing","Containment Zone Alerting Application"],
+certifications:[
+{title:"Software Testing Course – QSpiders",issuer:"QSpiders",date:"",fileName:"",fileData:""},
+{title:"ICT Academy Project - Containment Zone Alerting Application",issuer:"ICT Academy",date:"",fileName:"",fileData:""}],
+languages:"Tamil, English",
+hobbies:"Content Creating, Script Writing, Video Editing, Drawing, Reading Books, Investing in Crypto Coins"
+};
+
+let data=JSON.parse(localStorage.getItem("jagadhishPortfolioV2"))||structuredClone(ORIGINAL);
+const EDIT_PASSWORD="jash@2026";
+
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+function chips(a){return a.map(x=>`<span class="skill">${esc(x)}</span>`).join("");}
+function lines(s){return s.split("
+").map(x=>x.trim()).filter(Boolean);}
+
+function render(){
+ document.getElementById("heroName").textContent=data.name;
+ document.getElementById("phone").textContent=data.phone;
+ document.getElementById("email").textContent=data.email;
+ document.getElementById("heroSummary").textContent=data.summary;
+ document.getElementById("summary2").textContent=data.summary;
+ document.getElementById("heroStatus").textContent=data.experience[0]?.status||"OPEN TO OPPORTUNITIES";
+ document.getElementById("heroEducation").textContent=data.education[0]?.degree?.replace("Bachelor of Engineering in ","BE - ")||"BE - ECE";
+ document.getElementById("heroLanguages").textContent=data.languages.toUpperCase();
+
+ document.getElementById("experienceView").innerHTML=data.experience.map(x=>`
+ <div class="card"><div class="meta">${esc(x.period)}</div>
+ <h3>${esc(x.role)} | ${esc(x.company)}</h3>
+ <span class="status">${esc(x.status)}</span>
+ <ul>${x.bullets.map(b=>`<li>${esc(b)}</li>`).join("")}</ul></div>`).join("");
+
+ document.getElementById("educationView").innerHTML=data.education.map(x=>`
+ <div class="card"><div class="meta">${esc(x.period)}</div><h3>${esc(x.degree)}</h3>
+ <p class="muted">${esc(x.institution)}</p><b style="color:var(--green)">${esc(x.grade)}</b></div>`).join("");
+
+ document.getElementById("skillsView").innerHTML=data.skillGroups.map(x=>
+ `<div class="card"><h3>${esc(x.name)}</h3><div class="skills">${chips(x.items)}</div></div>`).join("");
+
+ document.getElementById("professionalSkills").innerHTML=chips(data.professionalSkills);
+ document.getElementById("projectCards").innerHTML=data.projects.map((x,i)=>
+ `<div class="card"><div class="meta">PROJECT_${String(i+1).padStart(2,"0")}</div><h3>${esc(x)}</h3></div>`).join("");
+
+ document.getElementById("certCards").innerHTML=data.certifications.map((x,i)=>
+ `<div class="card cert-card" onclick="openCertificate(${i})">
+ <div class="meta">CERT_${String(i+1).padStart(2,"0")}</div><h3>${esc(x.title)}</h3>
+ <p class="muted">${esc(x.issuer)}${x.date?" • "+esc(x.date):""}</p>
+ <div class="file-note">${x.fileData?"📎 CLICK TO OPEN UPLOADED CERTIFICATE":"⚠ NO CERTIFICATE FILE UPLOADED YET"}</div>
+ </div>`).join("");
+
+ document.getElementById("languages").textContent=data.languages;
+ document.getElementById("hobbies").textContent=data.hobbies;
+}
+
+function openCertificate(i){
+ const c=data.certifications[i];
+ if(!c.fileData){alert("No certificate file has been uploaded for this certification yet.");return}
+ const w=window.open();
+ w.document.write(`<title>${esc(c.title)}</title><iframe src="${c.fileData}" style="width:100%;height:100vh;border:0"></iframe>`);
+}
+
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",1800)}
+function openLogin(){document.getElementById("loginModal").classList.add("show");document.getElementById("passwordInput").focus()}
+function closeLogin(){document.getElementById("loginModal").classList.remove("show");document.getElementById("loginError").style.display="none"}
+function unlock(){
+ if(document.getElementById("passwordInput").value===EDIT_PASSWORD){
+  closeLogin();buildEditor();document.getElementById("editor").classList.add("show");document.getElementById("passwordInput").value="";
+ }else document.getElementById("loginError").style.display="block";
+}
+function closeEditor(){document.getElementById("editor").classList.remove("show")}
+
+function inp(label,value,cls){
+ return `<label class="small-label">${label}</label><input class="input ${cls}" value="${esc(value)}">`;
+}
+
+function buildEditor(){
+ document.getElementById("editorFields").innerHTML=`
+ <div class="editor-section"><h3>PROFILE</h3><div class="two">
+ <div>${inp("NAME",data.name,"p-name")}</div><div>${inp("PHONE",data.phone,"p-phone")}</div>
+ <div>${inp("EMAIL",data.email,"p-email")}</div><div>${inp("LANGUAGES",data.languages,"p-languages")}</div>
+ </div><label class="small-label">SUMMARY</label><textarea class="input p-summary">${esc(data.summary)}</textarea>
+ <label class="small-label">HOBBIES</label><textarea class="input p-hobbies">${esc(data.hobbies)}</textarea></div>
+
+ <div class="editor-section"><h3>PROFESSIONAL EXPERIENCE <button class="btn" onclick="addExperience()">+ ADD MORE</button></h3><div id="expEdit"></div></div>
+ <div class="editor-section"><h3>EDUCATION <button class="btn" onclick="addEducation()">+ ADD MORE</button></h3><div id="eduEdit"></div></div>
+ <div class="editor-section"><h3>TECHNICAL SKILL GROUPS <button class="btn" onclick="addSkillGroup()">+ ADD MORE</button></h3><div id="skillEdit"></div></div>
+ <div class="editor-section"><h3>PROFESSIONAL SKILLS <button class="btn" onclick="addProfessionalSkill()">+ ADD MORE</button></h3><div id="proSkillEdit"></div></div>
+ <div class="editor-section"><h3>ACADEMIC PROJECTS <button class="btn" onclick="addProject()">+ ADD MORE</button></h3><div id="projectEdit"></div></div>
+ <div class="editor-section"><h3>CERTIFICATIONS <button class="btn" onclick="addCertification()">+ ADD MORE</button></h3>
+ <p class="small-label">Upload the certificate inside each certification entry. PDF/JPG/PNG/WebP are supported.</p><div id="certEdit"></div></div>`;
+
+ renderEditorRows();
+}
+
+function renderEditorRows(){
+ document.getElementById("expEdit").innerHTML=data.experience.map((x,i)=>`
+ <div class="edit-row"><div class="edit-row-head"><strong>EXPERIENCE ${i+1}</strong><button class="btn danger" onclick="removeItem('experience',${i})">REMOVE</button></div>
+ <div class="two"><div>${inp("ROLE",x.role,"exp-role")}</div><div>${inp("COMPANY",x.company,"exp-company")}</div>
+ <div>${inp("PERIOD",x.period,"exp-period")}</div><div>${inp("CURRENT STATUS",x.status,"exp-status")}</div></div>
+ <label class="small-label">RESPONSIBILITIES — ONE PER LINE</label><textarea class="input exp-bullets">${esc(x.bullets.join("
+"))}</textarea></div>`).join("");
+
+ document.getElementById("eduEdit").innerHTML=data.education.map((x,i)=>`
+ <div class="edit-row"><div class="edit-row-head"><strong>EDUCATION ${i+1}</strong><button class="btn danger" onclick="removeItem('education',${i})">REMOVE</button></div>
+ <div class="two"><div>${inp("DEGREE / COURSE",x.degree,"edu-degree")}</div><div>${inp("INSTITUTION",x.institution,"edu-institution")}</div>
+ <div>${inp("PERIOD",x.period,"edu-period")}</div><div>${inp("GRADE / CGPA",x.grade,"edu-grade")}</div></div></div>`).join("");
+
+ document.getElementById("skillEdit").innerHTML=data.skillGroups.map((x,i)=>`
+ <div class="edit-row"><div class="edit-row-head"><strong>SKILL GROUP ${i+1}</strong><button class="btn danger" onclick="removeItem('skillGroups',${i})">REMOVE</button></div>
+ ${inp("GROUP NAME",x.name,"sg-name")}<label class="small-label">ITEMS — ONE PER LINE</label>
+ <textarea class="input sg-items">${esc(x.items.join("
+"))}</textarea></div>`).join("");
+
+ document.getElementById("proSkillEdit").innerHTML=data.professionalSkills.map((x,i)=>`
+ <div class="edit-row"><div class="edit-row-head"><strong>SKILL ${i+1}</strong><button class="btn danger" onclick="removeItem('professionalSkills',${i})">REMOVE</button></div>
+ ${inp("SKILL",x,"ps-name")}</div>`).join("");
+
+ document.getElementById("projectEdit").innerHTML=data.projects.map((x,i)=>`
+ <div class="edit-row"><div class="edit-row-head"><strong>PROJECT ${i+1}</strong><button class="btn danger" onclick="removeItem('projects',${i})">REMOVE</button></div>
+ ${inp("PROJECT NAME",x,"project-name")}</div>`).join("");
+
+ document.getElementById("certEdit").innerHTML=data.certifications.map((x,i)=>`
+ <div class="edit-row"><div class="edit-row-head"><strong>CERTIFICATION ${i+1}</strong><button class="btn danger" onclick="removeItem('certifications',${i})">REMOVE</button></div>
+ <div class="two"><div>${inp("CERTIFICATION NAME",x.title,"cert-title")}</div><div>${inp("ISSUER",x.issuer,"cert-issuer")}</div><div>${inp("DATE",x.date,"cert-date")}</div>
+ <div><label class="small-label">UPLOAD CERTIFICATE FILE</label><input class="input cert-file" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp"></div></div>
+ <div class="file-note">${x.fileData?"Current file: "+esc(x.fileName)+" — uploading a new file replaces it.":"No certificate uploaded yet."}</div></div>`).join("");
+}
+
+function addExperience(){data.experience.push({role:"New Role",company:"Company",period:"Period",status:"Current Status",bullets:["New responsibility"]});renderEditorRows()}
+function addEducation(){data.education.push({degree:"New Course / Degree",institution:"Institution",period:"Year - Year",grade:"Grade / CGPA"});renderEditorRows()}
+function addSkillGroup(){data.skillGroups.push({name:"New Skill Group",items:["New Skill"]});renderEditorRows()}
+function addProfessionalSkill(){data.professionalSkills.push("New Professional Skill");renderEditorRows()}
+function addProject(){data.projects.push("New Academic Project");renderEditorRows()}
+function addCertification(){data.certifications.push({title:"New Certification",issuer:"Issuer",date:"",fileName:"",fileData:""});renderEditorRows()}
+function removeItem(key,i){if(confirm("Remove this item?")){data[key].splice(i,1);renderEditorRows()}}
+
+function readFile(input){
+ return new Promise((resolve,reject)=>{
+  if(!input.files[0])return resolve(null);
+  const f=input.files[0];
+  if(f.size>8*1024*1024){alert("Please keep each certificate under 8 MB.");input.value="";return resolve(null)}
+  const r=new FileReader();r.onload=()=>resolve({name:f.name,data:r.result});r.onerror=reject;r.readAsDataURL(f);
+ });
+}
+
+async function saveChanges(){
+ data.name=document.querySelector(".p-name").value.trim();
+ data.phone=document.querySelector(".p-phone").value.trim();
+ data.email=document.querySelector(".p-email").value.trim();
+ data.languages=document.querySelector(".p-languages").value.trim();
+ data.summary=document.querySelector(".p-summary").value.trim();
+ data.hobbies=document.querySelector(".p-hobbies").value.trim();
+
+ data.experience=[...document.querySelectorAll("#expEdit .edit-row")].map(r=>({
+ role:r.querySelector(".exp-role").value.trim(),company:r.querySelector(".exp-company").value.trim(),
+ period:r.querySelector(".exp-period").value.trim(),status:r.querySelector(".exp-status").value.trim(),
+ bullets:lines(r.querySelector(".exp-bullets").value)}));
+
+ data.education=[...document.querySelectorAll("#eduEdit .edit-row")].map(r=>({
+ degree:r.querySelector(".edu-degree").value.trim(),institution:r.querySelector(".edu-institution").value.trim(),
+ period:r.querySelector(".edu-period").value.trim(),grade:r.querySelector(".edu-grade").value.trim()}));
+
+ data.skillGroups=[...document.querySelectorAll("#skillEdit .edit-row")].map(r=>({
+ name:r.querySelector(".sg-name").value.trim(),items:lines(r.querySelector(".sg-items").value)}));
+
+ data.professionalSkills=[...document.querySelectorAll("#proSkillEdit .ps-name")].map(x=>x.value.trim()).filter(Boolean);
+ data.projects=[...document.querySelectorAll("#projectEdit .project-name")].map(x=>x.value.trim()).filter(Boolean);
+
+ const rows=[...document.querySelectorAll("#certEdit .edit-row")];
+ const certs=[];
+ for(let i=0;i<rows.length;i++){
+  const r=rows[i],old=data.certifications[i]||{};
+  const uploaded=await readFile(r.querySelector(".cert-file"));
+  certs.push({
+   title:r.querySelector(".cert-title").value.trim(),issuer:r.querySelector(".cert-issuer").value.trim(),
+   date:r.querySelector(".cert-date").value.trim(),
+   fileName:uploaded?uploaded.name:(old.fileName||""),
+   fileData:uploaded?uploaded.data:(old.fileData||"")
+  });
+ }
+ data.certifications=certs;
+
+ try{
+  localStorage.setItem("jagadhishPortfolioV2",JSON.stringify(data));
+  render();buildEditor();toast("CHANGES SAVED");
+ }catch(e){
+  alert("The browser could not save the changes. Try a smaller certificate file (under 8 MB).");
+ }
+}
+
+function resetData(){
+ if(confirm("Reset all edits and remove uploaded certificates?")){
+  data=structuredClone(ORIGINAL);
+  localStorage.setItem("jagadhishPortfolioV2",JSON.stringify(data));
+  render();buildEditor();toast("ORIGINAL CONTENT RESTORED");
+ }
+}
+
+document.getElementById("editBtn").onclick=openLogin;
+document.getElementById("passwordInput").addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
+render();
+</script>
+
+</body>
+</html>
